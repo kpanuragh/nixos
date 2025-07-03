@@ -17,6 +17,10 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
+services.ollama = {
+  enable = true;
+  loadModels = [ "llama3.2:3b" "deepseek-r1:1.5b"];
+};
 
 
   networking.hostName = "iamanuragh"; # Define your hostname.

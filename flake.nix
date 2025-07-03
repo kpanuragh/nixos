@@ -25,9 +25,13 @@
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ollama-tui = {
+            url = "github:kpanuragh/ollama-tui";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, walker,ags,astal, hyprpanel, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, walker,ags,astal, hyprpanel,ollama-tui, ... }: {
     nixosConfigurations = {
       # TODO please change the hostname to your own
       iamanuragh = nixpkgs.lib.nixosSystem {

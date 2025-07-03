@@ -7,7 +7,8 @@
   
   home.packages = with pkgs; [
   inputs.astal.packages.${system}.default
-  inputs.hyprpanel.packages.${pkgs.system}.wrapper
+  inputs.hyprpanel.packages.${pkgs.system}.default
+  inputs.ollama-tui.packages.${system}.default
   # System Information & Resource Monitoring
   neofetch
   btop
@@ -32,10 +33,12 @@
   eza
   tree
   fd
+  fzf
   ripgrep
   file
   which
   trashy
+wl-clipboard
 
   # Archives
   xz
@@ -152,7 +155,7 @@
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "Anuragh";
+    userName = "Anuragh K P";
     userEmail = "anuragh.kp@cubettech.com";
     lfs.enable = true;
   };
