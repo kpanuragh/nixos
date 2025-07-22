@@ -33,7 +33,7 @@ services.ollama = {
   
   # Add 9003 to your existing list of allowed ports.
   # You likely already have port 22 for SSH.
-  allowedTCPPorts = [ 22 80 443 9003 19530 ]; 
+  allowedTCPPorts = [ 22 80 443 9003 19530 8001 ]; 
 };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -93,10 +93,15 @@ services.ollama = {
   };
 
   # Configure keymap in X11
-  services.xserver.xkb = {
+  services.xserver = {
+      enable = true;
+      displayManager.gdm.enable = true; # Enable GDM as the display manager
+        xkb = {
     layout = "us";
     variant = "";
   };
+
+};
   programs.adb.enable = true;
 
 
@@ -116,6 +121,8 @@ services.ollama = {
     wheelNeedsPassword = false;
   };
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+  services.upower.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -147,14 +154,17 @@ services.ollama = {
   bitwarden-cli
   sshpass
   vscode
+  libarchive
   ];
   programs.git.enable = true;
   programs.zsh.enable = true;
   programs.hyprland = {
   enable = true;
-  withUWSM = true;
   xwayland.enable = true;
   };
+
+services.gnome.gnome-keyring.enable = true;
+ security.pam.services.gdm-password.enableGnomeKeyring = true;
   xdg.portal = {
   enable = true;
   extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];

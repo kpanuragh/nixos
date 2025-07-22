@@ -11,6 +11,12 @@
   inputs.ollama-tui.packages.${system}.default
   # System Information & Resource Monitoring
   neofetch
+  nwg-look
+  python3
+mysql-workbench
+  zip
+  unzip
+  glib
   btop
   iotop
   iftop
@@ -86,7 +92,6 @@ wl-clipboard
 
   # Wayland/Hyprland specific
   hyprpaper
-  dunst
   libnotify
   hypridle
   hyprlock
@@ -122,9 +127,18 @@ wl-clipboard
   bluez
   networkmanager
   dart-sass
-  upower
   gvfs
   gtksourceview3
+  rpi-imager
+  hdparm
+  hakuneko
+        apktool
+        dex2jar
+            jadx
+        quark
+        zulu8
+        warp-terminal
+        awscli2
 ];
    programs.neovim = {
    enable = true;
@@ -205,21 +219,7 @@ programs.tmux = {
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
-    # custom settings
-    settings = {
-      opacity = 0.5;
-      env.TERM = "xterm-256color";
-       font = {
-      normal = {
-        family = "FiraCode Nerd Font";
-        style = "Regular";
       };
-      size = 12;
-    };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
-    };
-  };
   programs.waybar = {
   enable = true;
 
