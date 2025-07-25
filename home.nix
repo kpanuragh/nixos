@@ -17,6 +17,7 @@ mysql-workbench
   zip
   unzip
   glib
+  php83
   btop
   iotop
   iftop
