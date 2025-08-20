@@ -1,14 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  # Kitty configuration files
+  # Kitty configuration - Full directory symbolic linking
   home.file = {
-    # Main Kitty configuration
-    ".config/kitty/kitty.conf".source = ../../config/kitty/kitty.conf;
-    
-    # Theme configurations
-    ".config/kitty/current-theme.conf".source = ../../config/kitty/current-theme.conf;
-    ".config/kitty/dark-theme.auto.conf".source = ../../config/kitty/dark-theme.auto.conf;
+    # Link entire Kitty configuration directory
+    ".config/kitty" = {
+      source = ../../config/kitty;
+      recursive = true;
+    };
   };
   
   # Note: We don't use programs.kitty.enable here to avoid conflicts

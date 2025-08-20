@@ -1,33 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  # Hyprland configuration files
+  # Hyprland configuration - Full directory symbolic linking
   home.file = {
-    # Main Hyprland configuration
-    ".config/hypr/hyprland.conf".source = ../../config/hypr/hyprland.conf;
+    # Link entire Hyprland configuration directory
+    ".config/hypr" = {
+      source = ../../config/hypr;
+      recursive = true;
+    };
     
-    # Secure environment template
-    ".config/hypr/env.conf.example".source = ../../config/hypr/env.conf.example;
-    
-    # Hyprland related configs
-    ".config/hypr/hypridle.conf".source = ../../config/hypr/hypridle.conf;
-    ".config/hypr/hyprlock.conf".source = ../../config/hypr/hyprlock.conf;
-    ".config/hypr/hyprpaper.conf".source = ../../config/hypr/hyprpaper.conf;
-    
-    # Wallpapers
-    ".config/hypr/wal.jpg".source = ../../config/hypr/wal.jpg;
-    ".config/hypr/wal.png".source = ../../config/hypr/wal.png;
-    
-    # Wofi configuration
-    ".config/hypr/wofi-config".source = ../../config/hypr/wofi-config;
-    ".config/hypr/wofi-dmenu-config".source = ../../config/hypr/wofi-dmenu-config;
-    ".config/hypr/wofi-style.css".source = ../../config/hypr/wofi-style.css;
-    ".config/hypr/wofi-dmenu-style.css".source = ../../config/hypr/wofi-dmenu-style.css;
-    
-    # Dunst configuration
-    ".config/hypr/dunstrc".source = ../../config/hypr/dunstrc;
-    
-    # Scripts
+    # Scripts that need to be executable
     ".config/hypr/autostart.sh" = {
       source = ../../config/hypr/autostart.sh;
       executable = true;

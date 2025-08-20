@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  # Waybar configuration files
+  # Waybar configuration - Full directory symbolic linking
   home.file = {
-    # Main Waybar configuration
-    ".config/waybar/config".source = ../../config/waybar/config;
-    ".config/waybar/style.css".source = ../../config/waybar/style.css;
+    # Link entire Waybar configuration directory
+    ".config/waybar" = {
+      source = ../../config/waybar;
+      recursive = true;
+    };
     
-    # Waybar scripts
+    # Override scripts to ensure they're executable
     ".config/waybar/restart-waybar.sh" = {
       source = ../../config/waybar/restart-waybar.sh;
       executable = true;
@@ -23,14 +25,10 @@
       executable = true;
     };
     
-    # Music visualization scripts  
     ".config/waybar/smooth-music.sh" = {
       source = ../../config/waybar/smooth-music.sh;
       executable = true;
     };
-    
-    # Waybar wallpaper
-    ".config/waybar/wal.png".source = ../../config/waybar/wal.png;
   };
   
   # Enable Waybar

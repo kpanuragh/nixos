@@ -17,6 +17,11 @@ help:
 	@echo "  gc       - Run garbage collection"
 	@echo "  check    - Check flake for errors"
 	@echo "  setup-env - Set up secure environment variables"
+	@echo "  manage-dotfiles - Manage dotfiles symbolic linking"
+	@echo "  backup-configs - Backup dotfiles"
+	@echo "  apply-config - Apply dotfiles"
+	@echo "  dotfiles-status - Show dotfiles status"
+	@echo "  full-setup - Full setup for dotfiles"
 
 # Build and switch to new configuration
 switch:
@@ -77,3 +82,19 @@ push:
 setup-env:
 	@echo "Setting up secure environment variables..."
 	@./scripts/setup-secure-env.sh
+
+# Manage dotfiles symbolic linking
+manage-dotfiles:
+	@./scripts/manage-dotfiles.sh
+
+backup-configs:
+	@./scripts/manage-dotfiles.sh backup
+
+apply-config:
+	@./scripts/manage-dotfiles.sh apply
+
+dotfiles-status:
+	@./scripts/manage-dotfiles.sh status
+
+full-setup:
+	@./scripts/manage-dotfiles.sh setup
