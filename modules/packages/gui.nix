@@ -24,7 +24,7 @@
     logseq              # Local-first knowledge graph
     
     # Writing and Documentation
-    ghostwriter         # Distraction-free writing
+    kdePackages.ghostwriter  # Distraction-free writing
     
     # Office and Productivity
     libreoffice-fresh   # Office suite with AI features
