@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Secure Environment Setup Script
 # This script helps you set up your API keys securely
@@ -17,9 +17,19 @@ mkdir -p "$CONFIG_DIR"
 
 # Check if example file exists
 if [ ! -f "$EXAMPLE_FILE" ]; then
-    echo "❌ Example file not found: $EXAMPLE_FILE"
-    echo "Please make sure your NixOS configuration is applied first."
-    exit 1
+    echo "📋 Example file not found in home directory."
+    echo "🔧 Copying from NixOS configuration..."
+    
+    # Try to find the example file in the current repo
+    REPO_EXAMPLE="$(pwd)/config/hypr/env.conf.example"
+    if [ -f "$REPO_EXAMPLE" ]; then
+        cp "$REPO_EXAMPLE" "$EXAMPLE_FILE"
+        echo "✅ Copied example file to $EXAMPLE_FILE"
+    else
+        echo "❌ Could not find example file. Please apply your NixOS configuration first:"
+        echo "   sudo nixos-rebuild switch --flake ."
+        exit 1
+    fi
 fi
 
 # Check if env.conf already exists
