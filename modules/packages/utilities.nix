@@ -8,7 +8,7 @@
     dump1090-fa    # ADS-B decoder
     
     # AI and automation
-    shell-gpt       # GPT in terminal
+    shell-gpt       # GPT in terminal (keeping this as it's useful for quick queries)
     
     # Power management
     power-profiles-daemon
