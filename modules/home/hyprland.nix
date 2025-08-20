@@ -32,27 +32,6 @@
       source = ../../config/hypr/autostart.sh;
       executable = true;
     };
-    
-    ".config/hypr/install-gui-support.sh" = {
-      source = ../../config/hypr/install-gui-support.sh;
-      executable = true;
-    };
-    
-    ".config/hypr/install-visualizer.sh" = {
-      source = ../../config/hypr/install-visualizer.sh;
-      executable = true;
-    };
-    
-    ".config/hypr/visualizer-wallpaper.sh" = {
-      source = ../../config/hypr/visualizer-wallpaper.sh;
-      executable = true;
-    };
-    
-    # Python scripts
-    ".config/hypr/music-visualizer.py" = {
-      source = ../../config/hypr/music-visualizer.py;
-      executable = true;
-    };
   };
   
   # Wayland environment variables for Hyprland

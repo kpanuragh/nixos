@@ -3,8 +3,14 @@
 # Secure environment files - NEVER commit these!
 **/env.conf
 **/.env
-**/secrets.*
+**/secrets.json
+**/secrets.yaml
+**/secrets.yml
+**/secrets.txt
 **/api-keys.*
+
+# Allow Nix configuration files for secrets management
+!**/secrets.nix
 
 # Virtual environments
 **/venv/
