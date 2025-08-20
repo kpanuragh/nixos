@@ -12,7 +12,7 @@
     
     # Communication
     discord
-    slack-desktop
+    slack
     telegram-desktop
     
     # Security
@@ -24,21 +24,13 @@
     logseq              # Local-first knowledge graph
     
     # Writing and Documentation
-    typora              # Beautiful markdown editor
     ghostwriter         # Distraction-free writing
-    
-    # AI Development Tools
-    # cursor              # AI-powered code editor (may not be in nixpkgs)
     
     # Office and Productivity
     libreoffice-fresh   # Office suite with AI features
     
-    # Design and Creativity
-    # figma-linux         # Design tool (may not be in nixpkgs)
-    
     # Note-taking and PKM
     joplin-desktop      # Note-taking with sync
-    trilium-desktop     # Hierarchical note taking
     
     # AI Chat and Research
     zotero              # Research management
@@ -46,9 +38,6 @@
     
     # AI Image Tools
     upscayl             # AI image upscaler
-    
-    # Email with AI features
-    mailspring          # Modern email client
     
     # Utilities
     rpi-imager          # Raspberry Pi imager

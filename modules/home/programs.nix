@@ -104,49 +104,53 @@
     # VS Code with AI extensions
     vscode = {
       enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        # AI-powered coding assistance
-        github.copilot
-        github.copilot-chat
-        
-        # Language support with AI features
-        ms-python.python
-        ms-vscode.cpptools
-        rust-lang.rust-analyzer
-        bradlc.vscode-tailwindcss
-        
-        # Writing and documentation AI
-        streetsidesoftware.code-spell-checker
-        davidanson.vscode-markdownlint
-        
-        # Productivity and UI
-        vscodevim.vim
-        ms-vscode.theme-tomorrowkit
-        pkief.material-icon-theme
-        
-        # Git integration
-        eamodio.gitlens
-        
-        # Remote development
-        ms-vscode-remote.remote-ssh
-        ms-vscode-remote.remote-containers
-      ];
-      
-      userSettings = {
-        "github.copilot.enable" = {
-          "*" = true;
-          "yaml" = true;
-          "plaintext" = true;
-          "markdown" = true;
+      profiles = {
+        default = {
+          extensions = with pkgs.vscode-extensions; [
+            # AI-powered coding assistance
+            github.copilot
+            github.copilot-chat
+            
+            # Language support with AI features
+            ms-python.python
+            ms-vscode.cpptools
+            rust-lang.rust-analyzer
+            bradlc.vscode-tailwindcss
+            
+            # Writing and documentation AI
+            streetsidesoftware.code-spell-checker
+            davidanson.vscode-markdownlint
+            
+            # Productivity and UI
+            vscodevim.vim
+            ms-vscode.theme-tomorrowkit
+            pkief.material-icon-theme
+            
+            # Git integration
+            eamodio.gitlens
+            
+            # Remote development
+            ms-vscode-remote.remote-ssh
+            ms-vscode-remote.remote-containers
+          ];
+          
+          userSettings = {
+            "github.copilot.enable" = {
+              "*" = true;
+              "yaml" = true;
+              "plaintext" = true;
+              "markdown" = true;
+            };
+            "editor.inlineSuggest.enabled" = true;
+            "editor.suggestSelection" = "first";
+            "editor.tabCompletion" = "on";
+            "editor.wordBasedSuggestions" = "matchingDocuments";
+            "files.autoSave" = "afterDelay";
+            "files.autoSaveDelay" = 1000;
+            "workbench.colorTheme" = "Tomorrow Night Blue";
+            "workbench.iconTheme" = "material-icon-theme";
+          };
         };
-        "editor.inlineSuggest.enabled" = true;
-        "editor.suggestSelection" = "first";
-        "editor.tabCompletion" = "on";
-        "editor.wordBasedSuggestions" = "matchingDocuments";
-        "files.autoSave" = "afterDelay";
-        "files.autoSaveDelay" = 1000;
-        "workbench.colorTheme" = "Tomorrow Night Blue";
-        "workbench.iconTheme" = "material-icon-theme";
       };
     };
   };
