@@ -8,11 +8,6 @@
     ".config/waybar/style.css".source = ../../config/waybar/style.css;
     
     # Waybar scripts
-    ".config/waybar/waybar.sh" = {
-      source = ../../config/waybar/waybar.sh;
-      executable = true;
-    };
-    
     ".config/waybar/restart-waybar.sh" = {
       source = ../../config/waybar/restart-waybar.sh;
       executable = true;
@@ -28,34 +23,9 @@
       executable = true;
     };
     
-    # Music visualization scripts
-    ".config/waybar/music-visualizer.sh" = {
-      source = ../../config/waybar/music-visualizer.sh;
-      executable = true;
-    };
-    
-    ".config/waybar/audio-visualizer.sh" = {
-      source = ../../config/waybar/audio-visualizer.sh;
-      executable = true;
-    };
-    
-    ".config/waybar/simple-visualizer.sh" = {
-      source = ../../config/waybar/simple-visualizer.sh;
-      executable = true;
-    };
-    
+    # Music visualization scripts  
     ".config/waybar/smooth-music.sh" = {
       source = ../../config/waybar/smooth-music.sh;
-      executable = true;
-    };
-    
-    ".config/waybar/scrolling-music.sh" = {
-      source = ../../config/waybar/scrolling-music.sh;
-      executable = true;
-    };
-    
-    ".config/waybar/minimal-music.sh" = {
-      source = ../../config/waybar/minimal-music.sh;
       executable = true;
     };
     
