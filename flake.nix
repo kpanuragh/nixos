@@ -12,32 +12,20 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    walker.url = "github:abenz1267/walker";
-   astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags = {
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ollama-tui = {
+  ollama-tui = {
             url = "github:kpanuragh/ollama-tui";
             inputs.nixpkgs.follows = "nixpkgs";
         };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, walker,ags,astal, hyprpanel,ollama-tui, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager,ollama-tui, ... }: {
     nixosConfigurations = {
       # TODO please change the hostname to your own
       iamanuragh = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          ./modules/packages.nix
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -45,6 +33,7 @@
           {
 	    home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
 
             # TODO replace ryan with your own username
             home-manager.users.anuragh = import ./home.nix;

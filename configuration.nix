@@ -13,7 +13,21 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+    builders-use-substitutes = true;
+    max-jobs = "auto";
+    cores = 0; # Use all available cores
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
@@ -27,13 +41,14 @@ services.ollama = {
   networking.extraHosts =''
   127.0.0.1 oelms.local.com
   127.0.0.1 clientportal.local.com
+  127.0.0.1 library.local.com
   '';
   networking.firewall = {
   enable = true; # This is the default and can be omitted
   
   # Add 9003 to your existing list of allowed ports.
   # You likely already have port 22 for SSH.
-  allowedTCPPorts = [ 22 80 443 9003 19530 8001 ]; 
+  allowedTCPPorts = [ 22 80 443 9003 19530 8001 3355 3000 ]; 
 };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -44,7 +59,19 @@ services.ollama = {
   # Enable networking
   networking.networkmanager.enable = true;
   virtualisation.docker = {
-  enable = true;
+    enable = true;
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+      flags = [ "--all" ];
+    };
+    daemon.settings = {
+      features = { buildkit = true; };
+      # Use systemd cgroup driver for better integration
+      exec-opts = [ "native.cgroupdriver=systemd" ];
+      log-driver = "journald";
+      storage-driver = "overlay2";
+    };
   };
  
   fonts = {
@@ -79,7 +106,7 @@ services.ollama = {
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
-
+hardware.rtl-sdr.enable = true;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -109,7 +136,7 @@ services.ollama = {
   users.users.anuragh = {
     isNormalUser = true;
     description = "Anuragh";
-    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "adbusers" "plugdev" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -120,6 +147,26 @@ services.ollama = {
     enable = true;
     wheelNeedsPassword = false;
   };
+  
+  # Enhanced security settings
+  security.apparmor.enable = true;
+  security.polkit.enable = true;
+  
+  # Improve kernel security
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "loglevel=3"
+    "systemd.show_status=auto"
+    "rd.udev.log_level=3"
+  ];
+  
+  # Enable zram for better memory management
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
   services.upower.enable = true;
@@ -129,14 +176,51 @@ services.ollama = {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-       extraConfig.pipewire = {
+    jack.enable = true; # Enable JACK support for pro audio
+    wireplumber.enable = true;
+    
+    extraConfig.pipewire = {
       "context.properties" = {
         "default.clock.rate" = 48000;
-        "default.clock.quantum" = 2048;
-        "default.clock.min-quantum" = 2048;
-        "default.clock.max-quantum" = 8192;
+        "default.clock.quantum" = 1024; # Reduced for lower latency
+        "default.clock.min-quantum" = 256;
+        "default.clock.max-quantum" = 4096;
+        "core.daemon" = true;
+        "core.name" = "pipewire-0";
       };
-      };
+      "context.modules" = [
+        {
+          name = "libpipewire-module-protocol-native";
+        }
+        {
+          name = "libpipewire-module-profiler";
+        }
+        {
+          name = "libpipewire-module-metadata";
+        }
+        {
+          name = "libpipewire-module-spa-device-factory";
+        }
+        {
+          name = "libpipewire-module-spa-node-factory";
+        }
+        {
+          name = "libpipewire-module-client-node";
+        }
+        {
+          name = "libpipewire-module-client-device";
+        }
+        {
+          name = "libpipewire-module-adapter";
+        }
+        {
+          name = "libpipewire-module-link-factory";
+        }
+        {
+          name = "libpipewire-module-session-manager";
+        }
+      ];
+    };
   };
   services.fwupd.enable = true;
   programs.nix-ld.enable = true;
@@ -144,17 +228,25 @@ services.ollama = {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  # Automatic system optimization
+  nix.optimise = {
+    automatic = true;
+    dates = [ "03:45" ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  kitty
-  wofi
-  firefox
-  discord
-  bitwarden-cli
-  sshpass
-  vscode
-  libarchive
+    # Only essential packages that aren't in modules
+    discord
+    bitwarden-cli
   ];
   programs.git.enable = true;
   programs.zsh.enable = true;
@@ -186,8 +278,31 @@ programs.steam = {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
+    #services.openssh.enable = true;
+services.openssh = {
+  enable = true;
+  settings = {
+            PubkeyAcceptedAlgorithms = "ssh-rsa,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-512,rsa-sha2-256";
+                  KexAlgorithms =[
+                 "mlkem768x25519-sha256"
+  "sntrup761x25519-sha512"
+  "sntrup761x25519-sha512@openssh.com"
+  "curve25519-sha256"
+  "curve25519-sha256@libssh.org"
+  "diffie-hellman-group-exchange-sha256"
+    "diffie-hellman-group1-sha1"
+            ];
+    Ciphers = [
+  "chacha20-poly1305@openssh.com"
+  "aes256-gcm@openssh.com"
+  "aes128-gcm@openssh.com"
+  "aes256-ctr"
+  "aes192-ctr"
+  "aes128-ctr"
+ "3des-cbc"
+];
+  };
+};
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
