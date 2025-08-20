@@ -20,5 +20,8 @@
     ./modules/home/programs.nix
     ./modules/home/shell.nix
     ./modules/home/git.nix
+    ./modules/home/hyprland.nix
+    ./modules/home/wofi.nix
+    ./modules/home/secrets.nix
   ];
 }

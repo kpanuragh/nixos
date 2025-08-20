@@ -1,0 +1,222 @@
+# Dunst Configuration - Blue Anime Theme
+# Matching your Hyprland blue aesthetic
+
+[global]
+    ### Display ###
+    monitor = 0
+    follow = mouse
+    
+    ### Geometry ###
+    width = 450
+    height = 150
+    origin = top-right
+    offset = 20x60
+    scale = 0
+    notification_limit = 5
+    
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 12
+    progress_bar_frame_width = 2
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    ### Appearance ###
+    transparency = 5
+    separator_height = 3
+    padding = 20
+    horizontal_padding = 20
+    text_icon_padding = 16
+    frame_width = 4
+    frame_color = "#64b5f6"
+    gap_size = 12
+    separator_color = frame
+    sort = yes
+    
+    ### Text ###
+    font = Inter 12
+    line_height = 6
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    ### Icons ###
+    enable_recursive_icon_lookup = true
+    icon_theme = Papirus-Dark
+    icon_position = left
+    min_icon_size = 40
+    max_icon_size = 80
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/apps/
+    
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+    
+    ### Misc/Advanced ###
+    dmenu = /run/current-system/sw/bin/wofi --show dmenu
+    browser = /run/current-system/sw/bin/firefox
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 16
+    ignore_dbusclose = false
+    force_xwayland = false
+    force_xinerama = false
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
+    mouse_right_click = close_all
+    
+    ### Actions ###
+    action_button_height = 40
+    action_button_frame_width = 2
+    action_button_frame_color = "#64b5f6"
+    action_button_foreground = "#e3f2fd"
+    action_button_background = "#1e3a5f"
+    enable_posix_regex = true
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    # Low priority notifications - subtle blue
+    background = "#1e3a5f"
+    foreground = "#b3e5fc"
+    highlight = "#64b5f6"
+    frame_color = "#64b5f6"
+    timeout = 4
+    icon = dialog-information
+
+[urgency_normal]
+    # Normal notifications - main blue theme
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    highlight = "#90caf9"
+    frame_color = "#64b5f6"
+    timeout = 6
+    icon = dialog-information
+
+[urgency_critical]
+    # Critical notifications - red accent with blue background
+    background = "#1e3a5f"
+    foreground = "#ffffff"
+    highlight = "#f44336"
+    frame_color = "#f44336"
+    timeout = 0
+    icon = dialog-warning
+
+[category=im]
+    # Instant messaging
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 8
+    icon = mail-message-new
+
+[category=email]
+    # Email notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 10
+    icon = mail-unread
+
+[category=network]
+    # Network notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    icon = network-wireless
+
+[category=volume]
+    # Volume notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 2
+    icon = audio-volume-high
+
+[category=brightness]
+    # Brightness notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 2
+    icon = display-brightness
+
+[category=battery]
+    # Battery notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    icon = battery
+
+[summary="Volume"]
+    # Volume change notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 1
+    highlight = "#64b5f6"
+    set_stack_tag = "volume"
+
+[summary="Brightness"]
+    # Brightness change notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#64b5f6"
+    timeout = 1
+    highlight = "#64b5f6"
+    set_stack_tag = "brightness"
+
+[app_name="Spotify"]
+    # Spotify notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#1db954"
+    timeout = 4
+    icon = spotify
+
+[app_name="Discord"]
+    # Discord notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#5865f2"
+    timeout = 6
+    icon = discord
+
+[app_name="Firefox"]
+    # Firefox notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#ff7139"
+    timeout = 6
+    icon = firefox
+    
+[app_name="Microsoft Teams"]
+    # Microsoft Teams notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#6264a7"
+    timeout = 8
+    icon = teams
+
+[summary="*teams*"]
+    # Teams notifications (catch various formats)
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#6264a7"
+    timeout = 8
+    
+[body="*teams.microsoft.com*"]
+    # Teams web notifications
+    background = "#1e3a5f"
+    foreground = "#e3f2fd"
+    frame_color = "#6264a7"
+    timeout = 8

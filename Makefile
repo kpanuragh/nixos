@@ -16,6 +16,7 @@ help:
 	@echo "  upgrade  - Update and switch to new configuration"
 	@echo "  gc       - Run garbage collection"
 	@echo "  check    - Check flake for errors"
+	@echo "  setup-env - Set up secure environment variables"
 
 # Build and switch to new configuration
 switch:
@@ -71,3 +72,8 @@ commit:
 # Push changes to remote
 push:
 	git push origin main
+
+# Set up secure environment variables
+setup-env:
+	@echo "Setting up secure environment variables..."
+	@./scripts/setup-secure-env.sh

@@ -1,0 +1,36 @@
+# Git ignore file for NixOS configuration
+
+# Secure environment files - NEVER commit these!
+**/env.conf
+**/.env
+**/secrets.*
+**/api-keys.*
+
+# Virtual environments
+**/venv/
+**/grammar-fixer-venv/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+result
+result-*
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Nix result symlinks
+/result
