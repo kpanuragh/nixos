@@ -22,6 +22,8 @@
     ./modules/home/git.nix
     ./modules/home/hyprland.nix
     ./modules/home/wofi.nix
+    ./modules/home/waybar.nix
+    ./modules/home/kitty.nix
     ./modules/home/secrets.nix
   ];
 }

@@ -1,0 +1,173 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "margin-top": 6,
+    "margin-left": 12,
+    "margin-right": 12,
+    "spacing": 0,
+    "modules-left": ["hyprland/workspaces", "custom/weather"],
+    "modules-center": ["custom/music", "hyprland/window"],
+    "modules-right": ["tray", "idle_inhibitor", "cpu", "memory", "temperature", "network", "pulseaudio", "pulseaudio#microphone", "battery", "clock", "custom/power"],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "urgent": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "exec": "~/.config/waybar/weather.sh",
+        "interval": 300,
+        "tooltip": false,
+        "on-click": "xdg-open https://wttr.in"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 60,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "🌐 $1",
+            "(.*) - Visual Studio Code": "💻 $1",
+            "(.*) - nvim": "📝 $1",
+            "": "🏠 Desktop"
+        }
+    },
+
+    "custom/music": {
+        "format": "{}",
+        "exec": "~/.config/waybar/smooth-music.sh",
+        "interval": 1,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "tooltip-format": "🎵 Music Controls - Left: Play/Pause | Right: Next | Middle: Previous"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+        "show-passive-items": true
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "🔓",
+            "deactivated": "🔒"
+        },
+        "tooltip-format-activated": "🔓 Idle inhibitor is active - system won't sleep",
+        "tooltip-format-deactivated": "🔒 Idle inhibitor is inactive - system can sleep"
+    },
+
+    "cpu": {
+        "format": "💻 {usage}%",
+        "interval": 2,
+        "on-click": "kitty -e htop",
+        "tooltip-format": "💻 CPU Usage: {usage}%\nLoad: {load}",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "🧠 {percentage}%",
+        "interval": 2,
+        "on-click": "kitty -e htop",
+        "tooltip-format": "🧠 Memory: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "format": "🌡️ {temperatureC}°C",
+        "interval": 2,
+        "critical-threshold": 80,
+        "tooltip-format": "🌡️ CPU Temperature: {temperatureC}°C"
+    },
+
+    "network": {
+        "format-wifi": "📶 {essid} {signalStrength}%",
+        "format-ethernet": "🌐 {ifname}",
+        "format-disconnected": "❌ Disconnected",
+        "format-alt": "🌐 {ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "Connected to: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+        "on-click-right": "nm-connection-editor",
+        "max-length": 30
+    },
+
+    "pulseaudio": {
+        "format": "🔊 {volume}%",
+        "format-bluetooth": "🎧 {volume}%",
+        "format-bluetooth-muted": "🎧 ",
+        "format-muted": "🔇 ",
+        "format-icons": {
+            "headphone": "🎧",
+            "hands-free": "🎧",
+            "headset": "🎧",
+            "phone": "📱",
+            "portable": "🔊",
+            "car": "🚗",
+            "default": ["🔈", "🔉", "🔊"]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "tooltip-format": "🔊 Volume: {volume}%"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "🎤 {format_source}",
+        "format-source": "{volume}%",
+        "format-source-muted": "🔇",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+        "tooltip-format": "🎤 Microphone: {volume}%"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "🔋 {capacity}%",
+        "format-charging": "⚡ {capacity}%",
+        "format-plugged": "🔌 {capacity}%",
+        "format-alt": "⏱️ {time}",
+        "format-icons": ["🪫", "🔋", "🔋", "🔋", "🔋"],
+        "tooltip-format": "🔋 Battery: {capacity}%\n⏱️ Time remaining: {timeTo}"
+    },
+
+    "clock": {
+        "format": "🕐 {:%H:%M}",
+        "format-alt": "📅 {:%Y-%m-%d}",
+        "tooltip-format": "📅 <big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "custom/power": {
+        "format": "⏽️",
+        "on-click": "~/.config/waybar/power-menu.sh",
+        "tooltip-format": "⏽️ Power Menu - Click to open power options"
+    }
+}

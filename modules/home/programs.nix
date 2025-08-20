@@ -100,8 +100,5 @@
 
     # Terminal emulator
     alacritty.enable = true;
-
-    # Status bar for Wayland
-    waybar.enable = true;
   };
 }

@@ -1,0 +1,232 @@
+* {
+    font-family: "JetBrains Mono", "Nerd Font", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    min-height: 0;
+    border: none;
+}
+
+/* Main Waybar Container - Split into 3 sections */
+window#waybar {
+    background: transparent;
+    color: #ffffff;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Left Section - Workspaces & Weather */
+#workspaces,
+#custom-weather {
+    background: rgba(40, 42, 54, 0.95);
+    margin: 4px 1px 4px 6px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+#custom-weather {
+    color: #f1fa8c;
+    font-weight: 600;
+    padding: 4px 8px;
+    margin-left: 2px;
+}
+
+#workspaces button {
+    padding: 4px 8px;
+    margin: 1px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    min-width: 20px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    background: #6272a4;
+    color: #ffffff;
+    box-shadow: 0 1px 4px rgba(98, 114, 164, 0.4);
+}
+
+#workspaces button.urgent {
+    background: #ff5555;
+    color: #ffffff;
+}
+
+/* Center Section - Music & Window */
+#custom-music,
+#window {
+    background: rgba(40, 42, 54, 0.95);
+    margin: 4px 2px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: #f8f8f2;
+}
+
+#custom-music {
+    color: #ff79c6;
+    font-weight: 600;
+    min-width: 140px;
+}
+
+/* Right Section - System Info */
+#tray,
+#idle_inhibitor,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#battery,
+#clock,
+#custom-power {
+    background: rgba(40, 42, 54, 0.95);
+    margin: 4px 1px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: #f8f8f2;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Microphone module styling */
+#pulseaudio.microphone {
+    background: rgba(40, 42, 54, 0.95);
+    margin: 4px 1px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    color: #ff5555;
+}
+
+/* Individual Module Colors */
+#tray {
+    color: #f8f8f2;
+    padding: 4px 6px;
+}
+
+#idle_inhibitor {
+    color: #f1fa8c;
+}
+
+#idle_inhibitor.activated {
+    color: #50fa7b;
+}
+
+#cpu {
+    color: #ff79c6;
+}
+
+#cpu.warning {
+    color: #ffb86c;
+}
+
+#cpu.critical {
+    color: #ff5555;
+}
+
+#memory {
+    color: #8be9fd;
+}
+
+#temperature {
+    color: #50fa7b;
+}
+
+#temperature.critical {
+    color: #ff5555;
+}
+
+#network {
+    color: #8be9fd;
+}
+
+#network.disconnected {
+    color: #ff5555;
+}
+
+#pulseaudio {
+    color: #50fa7b;
+}
+
+#pulseaudio.muted {
+    color: #6272a4;
+}
+
+#battery {
+    color: #f1fa8c;
+}
+
+#battery.charging {
+    color: #50fa7b;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffb86c;
+}
+
+#battery.critical:not(.charging) {
+    color: #ff5555;
+}
+
+#clock {
+    color: #bd93f9;
+    font-weight: 600;
+}
+
+#custom-power {
+    color: #ff5555;
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+#custom-power:hover {
+    background: rgba(255, 85, 85, 0.2);
+    color: #ffffff;
+}
+
+/* Hover Effects */
+#workspaces button:hover,
+#custom-weather:hover,
+#custom-music:hover,
+#window:hover,
+#tray:hover,
+#idle_inhibitor:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#clock:hover {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tooltip styling */
+tooltip {
+    background: rgba(40, 42, 54, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+tooltip label {
+    color: #f8f8f2;
+    font-weight: 400;
+}
+
+
