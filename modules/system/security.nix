@@ -41,7 +41,7 @@
     };
   };
 
-  # System-wide security settings
+  # System-wide security kernel settings
   boot.kernel.sysctl = {
     # Network security
     "net.ipv4.conf.all.send_redirects" = false;

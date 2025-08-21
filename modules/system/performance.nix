@@ -3,7 +3,7 @@
 {
   # Performance optimizations
   
-  # Kernel parameters for better performance
+  # Kernel parameters for better performance (security settings in security.nix)
   boot.kernel.sysctl = {
     # Network performance
     "net.core.rmem_max" = 134217728;
@@ -98,22 +98,15 @@
       '';
     };
 
-    # Automatic garbage collection
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
     # Optimize SSD
     fstrim.enable = true;
+  };
 
-    # Automatic system maintenance
-    systemd-oomd = {
-      enable = true;
-      enableRootSlice = true;
-      enableUserSlices = true;
-    };
+  # Automatic system maintenance
+  systemd.oomd = {
+    enable = true;
+    enableRootSlice = true;
+    enableUserSlices = true;
   };
 
   # Nix store optimization

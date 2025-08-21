@@ -4,12 +4,14 @@
   # X11 and display management
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
     xkb = {
       layout = "us";
       variant = "";
     };
   };
+  
+  # Display manager
+  services.displayManager.gdm.enable = true;
   
   # Hyprland configuration
   programs.hyprland = {
