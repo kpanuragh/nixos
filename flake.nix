@@ -2,43 +2,57 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    # Use nixos-unstable for latest packages, with option to pin stable releases
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  ollama-tui = {
-            url = "github:kpanuragh/ollama-tui";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+    
+    # Additional useful inputs
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Your custom packages
+    ollama-tui = {
+      url = "github:kpanuragh/ollama-tui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    # Hardware optimization
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager,ollama-tui, ... }: {
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, hardware, ollama-tui, hyprland, ... }: {
     nixosConfigurations = {
-      # TODO please change the hostname to your own
+      # Change hostname to match your actual system
       iamanuragh = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { 
+          inherit inputs; 
+          pkgs-stable = import nixpkgs-stable {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+        };
         modules = [
           ./configuration.nix
+          # Add hardware module only if needed for your specific hardware
+          # hardware.nixosModules.common-pc-laptop # Uncomment if needed
 
           # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
-	    home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-
-            # TODO replace ryan with your own username
             home-manager.users.anuragh = import ./home.nix;
-	    home-manager.extraSpecialArgs = { inherit inputs; };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };

@@ -17,6 +17,8 @@
     ./modules/system/hardware.nix
     ./modules/system/virtualization.nix
     ./modules/system/locale.nix
+    # ./modules/system/security.nix      # TODO: Review and uncomment if needed
+    # ./modules/system/performance.nix   # TODO: Review and uncomment if needed
     
     # Desktop modules
     ./modules/desktop/display.nix
