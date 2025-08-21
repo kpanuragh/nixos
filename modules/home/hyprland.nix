@@ -15,6 +15,15 @@
       executable = true;
     };
   };
+
+  # Create env.conf from example if it doesn't exist (for secrets)
+  home.activation.createHyprEnvConf = ''
+    if [ ! -f ~/.config/hypr/env.conf ]; then
+      echo "Creating ~/.config/hypr/env.conf from example..."
+      cp ~/.config/hypr/env.conf.example ~/.config/hypr/env.conf
+      echo "Please edit ~/.config/hypr/env.conf with your actual API keys"
+    fi
+  '';
   
   # Wayland environment variables for Hyprland
   home.sessionVariables = {

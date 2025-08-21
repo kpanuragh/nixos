@@ -19,6 +19,16 @@
     php83
     php83Packages.composer
     
+    # Language servers for Neovim
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted  # HTML, CSS, JSON, ESLint
+    nodePackages."@vue/language-server"
+    nodePackages.svelte-language-server
+    nodePackages.typescript
+    phpactor
+    tailwindcss-language-server
+    emmet-ls
+    
     # Development utilities
     gh              # GitHub CLI
     volta           # Node version manager

@@ -1,7 +1,7 @@
 # NixOS Configuration Management
-# Convenient commands for managing your NixOS configuration
+# Simple commands for managing your NixOS configuration
 
-.PHONY: help switch build test clean update upgrade gc check
+.PHONY: help switch build test clean update upgrade gc check info commit push
 
 # Default target
 help:
@@ -16,12 +16,9 @@ help:
 	@echo "  upgrade  - Update and switch to new configuration"
 	@echo "  gc       - Run garbage collection"
 	@echo "  check    - Check flake for errors"
-	@echo "  setup-env - Set up secure environment variables"
-	@echo "  manage-dotfiles - Manage dotfiles symbolic linking"
-	@echo "  backup-configs - Backup dotfiles"
-	@echo "  apply-config - Apply dotfiles"
-	@echo "  dotfiles-status - Show dotfiles status"
-	@echo "  full-setup - Full setup for dotfiles"
+	@echo "  info     - Show system information"
+	@echo "  commit   - Add and commit changes"
+	@echo "  push     - Push changes to remote"
 
 # Build and switch to new configuration
 switch:
@@ -77,24 +74,3 @@ commit:
 # Push changes to remote
 push:
 	git push origin main
-
-# Set up secure environment variables
-setup-env:
-	@echo "Setting up secure environment variables..."
-	@./scripts/setup-secure-env.sh
-
-# Manage dotfiles symbolic linking
-manage-dotfiles:
-	@./scripts/manage-dotfiles.sh
-
-backup-configs:
-	@./scripts/manage-dotfiles.sh backup
-
-apply-config:
-	@./scripts/manage-dotfiles.sh apply
-
-dotfiles-status:
-	@./scripts/manage-dotfiles.sh status
-
-full-setup:
-	@./scripts/manage-dotfiles.sh setup
