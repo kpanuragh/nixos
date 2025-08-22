@@ -18,6 +18,8 @@
     julia
     php83
     php83Packages.composer
+
+    burpsuite
     
     # Language servers for Neovim
     nodePackages.typescript-language-server

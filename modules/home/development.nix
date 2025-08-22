@@ -18,6 +18,7 @@
     
     # Containers and virtualization (user-specific)
     podman-compose
+
     
     # Database tools (user-specific)
     postgresql # Client tools
