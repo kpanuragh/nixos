@@ -1,8 +1,9 @@
 /* Wofi Theme - Blue Anime Modern */
 
 * {
-    font-family: "SF Pro Display", "Inter", "Roboto", sans-serif;
-    font-size: 14px;
+    font-family: "Inter", "Roboto", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
 }
 
 /* Main window */

@@ -1,9 +1,19 @@
 * {
-    font-family: "JetBrains Mono", "Nerd Font", monospace;
-    font-size: 11px;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free Solid", "Font Awesome 6 Brands", "Inter", "Roboto", sans-serif;
+    font-size: 12px;
     font-weight: 500;
     min-height: 0;
     border: none;
+}
+
+/* Icon modules use Nerd Font */
+.module {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free Solid", sans-serif;
+}
+
+#workspaces button {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free Solid", sans-serif;
+    font-weight: 500;
 }
 
 /* Main Waybar Container - Split into 3 sections */
@@ -227,6 +237,27 @@ tooltip {
 tooltip label {
     color: #f8f8f2;
     font-weight: 400;
+}
+
+/* Icon-specific font styling */
+#workspaces button,
+#idle_inhibitor,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#battery,
+#clock,
+#custom-power {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free Solid", sans-serif;
+    font-weight: 500;
+}
+
+/* Ensure icons render correctly */
+button {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free Solid", sans-serif;
+    font-weight: 500;
 }
 
 
